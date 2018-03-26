@@ -18,7 +18,7 @@ io.on('connection', (client) => {
 });
 
 function loadData() {
-  fetch(`${baseAPI}${limit10API}`)
+  fetch(`${baseAPI}${start100Limit12API}`)
     .then(response => response.json())
     .then((data) => {
       // console.log(data);
