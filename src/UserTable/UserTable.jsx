@@ -53,7 +53,7 @@ class UserTable extends React.Component {
                 <tbody>
                   {
                   // IF empty array
-                  this.state.data.length === 0 ? <tr> No Data Found! </tr> :
+                  (!Array.isArray(this.state.data) || !this.state.data.length) ? <tr> No Data Found! </tr> :
                   // If array has object
                   this.state.data.map((item) => {
                     return (
