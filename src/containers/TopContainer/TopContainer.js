@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import UserTable from './../../UserTable';
-import coinOperations from './../../ducks/CoinData';
 import { initTodo, updateTodo } from './../../actions';
 
 class TopContainer extends React.Component {
