@@ -12,11 +12,13 @@ class UserTable extends React.Component {
     super(props);
     this.state = {
       data: [],
+      dataOld: [],
     };
 
     subscribeToTimer((err, data) => {
       console.log(data);
       this.setState({
+        dataOld: data,
         data,
       });
     });
@@ -50,16 +52,26 @@ class UserTable extends React.Component {
                   // IF empty array
                   this.state.data.length === 0 ? <tr> No Data Found! </tr> :
                   // If array has object
-                  this.state.data.map(item => (
-                    <tr>
-                      <td>{item.id}</td>
-                      <td>{item.name}</td>
-                      <td>{item.symbol}</td>
-                      <td>{item.rank}</td>
-                      <td>{item.price_usd}</td>
-                      <td>{item.price_btc}</td>
-                    </tr>
-                  ))
+                  this.state.data.map((item, index) => {
+                    const isValueDiff = this.state.dataOld[index].percent_change_24h - item.percent_change_24h;
+                    if (isValueDiff > 0) {
+                      console.log('red');
+                    } else if (isValueDiff < 0) {
+                      console.log('green');
+                    }
+                    
+                    return (
+                      // Route map to include comparion to change colour based on price change between dataOld and data
+                      <tr className={isValueDiff > 0 ? 'downValue' : 'upValue'}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.symbol}</td>
+                        <td>{item.rank}</td>
+                        <td>{item.price_usd}</td>
+                        <td>{item.price_btc}</td>
+                      </tr>
+                    );
+                  })
                 }
                 </tbody>
               </Table>

@@ -5,3 +5,11 @@
 .userTable2 {
     border:3px solid yellowgreen;
 }
+.downValue {
+    border:1px solid red;
+    color: red
+}
+.upValue {
+    border:6px solid green;
+    color: green;
+}
