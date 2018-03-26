@@ -45,6 +45,9 @@ class UserTable extends React.Component {
                     <th>Rank</th>
                     <th>Price in USD</th>
                     <th>Price in Bitcoin</th>
+                    <th>Percent change in 1H</th>
+                    <th>Percent change in 24H</th>
+                    <th>Percent change in 7D</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -52,23 +55,19 @@ class UserTable extends React.Component {
                   // IF empty array
                   this.state.data.length === 0 ? <tr> No Data Found! </tr> :
                   // If array has object
-                  this.state.data.map((item, index) => {
-                    const isValueDiff = this.state.dataOld[index].percent_change_24h - item.percent_change_24h;
-                    if (isValueDiff > 0) {
-                      console.log('red');
-                    } else if (isValueDiff < 0) {
-                      console.log('green');
-                    }
-                    
+                  this.state.data.map((item) => {
                     return (
                       // Route map to include comparion to change colour based on price change between dataOld and data
-                      <tr className={isValueDiff > 0 ? 'downValue' : 'upValue'}>
+                      <tr>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.symbol}</td>
                         <td>{item.rank}</td>
                         <td>{item.price_usd}</td>
                         <td>{item.price_btc}</td>
+                        <td className={item.percent_change_1h > 0 ? 'upValue' : 'downValue'}>{item.percent_change_1h}</td>
+                        <td className={item.percent_change_24h > 0 ? 'upValue' : 'downValue'}>{item.percent_change_24h}</td>
+                        <td className={item.percent_change_7d > 0 ? 'upValue' : 'downValue'}>{item.percent_change_7d}</td>
                       </tr>
                     );
                   })
