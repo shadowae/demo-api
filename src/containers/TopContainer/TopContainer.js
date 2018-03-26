@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import UserTable from './../../UserTable';
 import coinOperations from './../../ducks/CoinData';
 import { initTodo, updateTodo } from './../../actions';
-import { stat } from 'fs';
 
 class TopContainer extends React.Component {
   constructor(props) {
