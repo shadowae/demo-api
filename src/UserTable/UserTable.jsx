@@ -3,10 +3,11 @@ import { Grid, Row, Col, Table, Image, Glyphicon } from 'react-bootstrap';
 import React from 'react';
 import cssModule from 'react-css-modules';
 import styles from './UserTable.css';
-
+import PropTypes from 'prop-types';
 
 import { coinList, baseAPI, limit10API, start100Limit12API } from './../utils/constant';
 import mainLogo from './profile_pic.png';
+import { subscribeToTimer } from './../utils/api';
 
 class UserTable extends React.Component {
   constructor(props) {
@@ -15,11 +16,20 @@ class UserTable extends React.Component {
       showArray: null,
       value: '',
       data: [],
+      timestamp: 'no timestamp yet',
+      totalValue: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.filterFunction = this.filterFunction.bind(this);
+    subscribeToTimer((err, data) => {
+      // console.log(timestamp);
+      // props.fetchCoinData(data);
+      this.setState({
+        data,
+      });
+    });
   }
 
   componentWillMount() {
@@ -30,18 +40,18 @@ class UserTable extends React.Component {
   }
 
   componentDidMount() {
-    this.loadData();
+    // this.loadData();
   }
 
-  loadData() {
-    fetch(`${baseAPI}${start100Limit12API}`)
-      .then(response => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({ data });
-      })
-      .catch(err => console.error(this.props.url, err.toString()));
-  }
+  // loadData() {
+  //   fetch(`${baseAPI}${limit10API}`)
+  //     .then(response => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       // this.setState({ data });
+  //     })
+  //     .catch(err => console.error(this.props.url, err.toString()));
+  // }
 
   handleChange(event) {
     this.setState({
@@ -83,6 +93,11 @@ class UserTable extends React.Component {
   render() {
     return (
       <div>
+        <div className="App">
+          <p className="App-intro">
+          This is the timer value: {this.state.timestamp}
+          </p>
+        </div>
         <Grid fluid className="">
           <Row className="">
             <Col lg={12} md={12} className="userTable">
@@ -132,5 +147,10 @@ class UserTable extends React.Component {
     );
   }
 }
+
+UserTable.propTypes = {
+  fetchCoinData: PropTypes.func.isRequired,
+  todos: PropTypes.object.isRequired,
+};
 
 export default cssModule(UserTable, styles);
