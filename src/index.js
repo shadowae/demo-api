@@ -4,7 +4,7 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import App from './App.js';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 // import thunk from 'redux-thunk';
 // import { createLogger } from 'redux-logger';

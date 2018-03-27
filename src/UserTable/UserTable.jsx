@@ -4,7 +4,6 @@ import React from 'react';
 import cssModule from 'react-css-modules';
 import styles from './UserTable.css';
 
-import { coinList } from './../utils/constant';
 import { subscribeToTimer } from './../utils/api';
 
 class UserTable extends React.Component {

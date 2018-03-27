@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 // Sub Container
 import TopContainer from './containers/TopContainer/TopContainer';
