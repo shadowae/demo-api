@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 
 const baseAPI = 'https://api.coinmarketcap.com/v1/ticker/';
 const limit10API = '?limit=10';
+const limit20API = '?limit=20';
 const start100Limit12API = '?start=100&limit=12';
 let tempValue = null;
 io.on('connection', (client) => {
@@ -18,7 +19,7 @@ io.on('connection', (client) => {
 });
 
 function loadData() {
-  fetch(`${baseAPI}${start100Limit12API}`)
+  fetch(`${baseAPI}${limit20API}`)
     .then(response => response.json())
     .then((data) => {
       // console.log(data);
